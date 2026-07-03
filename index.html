@@ -636,7 +636,7 @@ const firebaseConfig = {
   storageBucket: "carbank-sp1.firebasestorage.app",
   messagingSenderId: "855219534500",
   appId: "1:855219534500:web:70c5f7c3321444601b4431"
-};
+}
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -645,19 +645,23 @@ const dbRef = ref(db, 'registros');
 const GCM_LIST_PADRAO = ['Adilson','Ana Cristina','Carlos','Christian','Custódio','Janaína','Karina','Lazaro','Maísa','Paoline','Rita','Sandra','Rubens'];
 let GCM_LIST = [...GCM_LIST_PADRAO];
 const gcmListRef = ref(db, 'listaGCM');
+const gcmListVersionRef = ref(db, 'listaGCM_version');
+const GCM_LIST_VERSION = 'grande-sp1-v1';
 
 function gcmKeyOf(nome) {
   return nome.replace(/[^a-zA-Z0-9]/g, '_');
 }
 
-// Semeia a lista padrão no Firebase caso ainda não exista lá
-get(gcmListRef).then((snap) => {
-  if (!snap.exists()) {
+// Sincroniza a lista padrão no Firebase apenas quando a versão salva for diferente
+// (isso corrige listas antigas/erradas uma única vez, sem apagar ajustes feitos depois pelo painel)
+get(gcmListVersionRef).then((versionSnap) => {
+  const savedVersion = versionSnap.exists() ? versionSnap.val() : null;
+  if (savedVersion !== GCM_LIST_VERSION) {
     const seed = {};
     GCM_LIST_PADRAO.forEach(nome => { seed[gcmKeyOf(nome)] = nome; });
-    set(gcmListRef, seed);
+    set(gcmListRef, seed).then(() => set(gcmListVersionRef, GCM_LIST_VERSION));
   }
-}).catch((err) => console.error('Erro ao verificar listaGCM:', err));
+}).catch((err) => console.error('Erro ao verificar listaGCM_version:', err));
 
 // Escuta mudanças na lista de GCMs em tempo real
 onValue(gcmListRef, (snapshot) => {
