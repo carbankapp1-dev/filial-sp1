@@ -327,7 +327,9 @@
   }
   .t-row:last-child { border-bottom: none; }
   .t-row:hover { background: #f9fafb; }
-  .td { font-size: 14px; color: #374151; text-align: center; }
+  .td { font-size: 14px; color: #374151; text-align: center; min-width: 0; overflow-wrap: break-word; }
+  .td:first-child { min-width: 0; overflow-wrap: break-word; }
+  .th { min-width: 0; }
   .td:first-child { text-align: left; font-weight: 500; color: #111827; }
   .td-ap { color: #1e40af; font-weight: 700; }
   .td-zero { color: #d1d5db; font-weight: 500; }
@@ -506,10 +508,11 @@
     </div>
 
     <div class="form-card">
+      <form autocomplete="off" onsubmit="return false;">
       <div class="field-group">
         <label class="field-label">GCM</label>
         <div class="select-wrap">
-          <select class="field-select" id="sel-gcm">
+          <select class="field-select" id="sel-gcm" autocomplete="off">
             <option value="">Selecione o GCM...</option>
           </select>
         </div>
@@ -524,6 +527,7 @@
         <label class="field-label">Quantidade de Pagas</label>
         <input type="number" class="field-input" id="inp-pg" min="0" placeholder="0" autocomplete="off">
       </div>
+      </form>
 
       <button class="btn-wpp" onclick="submitAndShare()">
         <svg class="wpp-icon" viewBox="0 0 24 24" fill="white">
@@ -544,7 +548,7 @@
     </div>
     <div class="login-title">Acesso Administrativo</div>
     <div class="login-sub">Digite a senha para acessar o painel</div>
-    <input type="password" class="login-input" id="inp-senha" placeholder="••••••" onkeydown="if(event.key==='Enter') doLogin()">
+    <input type="password" class="login-input" id="inp-senha" placeholder="••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter') doLogin()">
     <button class="btn-login" onclick="doLogin()">Entrar</button>
     <div class="login-error" id="login-error">❌ Senha incorreta. Tente novamente.</div>
   </div>
