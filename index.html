@@ -97,6 +97,14 @@
     border-color: #4ade80;
     background: white;
   }
+  .field-input[type="number"]::-webkit-outer-spin-button,
+  .field-input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .field-input[type="number"] {
+    -moz-appearance: textfield;
+  }
   .select-wrap { position: relative; }
   .select-wrap::after {
     content: '▾';
@@ -568,7 +576,7 @@
     <div class="table-card">
       <div class="t-head t-head-ferias">
         <div class="th">GCM</div>
-        <div class="th">Aprovadas</div>
+        <div class="th">Apr.</div>
         <div class="th">Pagas</div>
         <div class="th">Férias</div>
         <div class="th"></div>
