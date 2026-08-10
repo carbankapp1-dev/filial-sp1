@@ -328,7 +328,7 @@
   .t-row:last-child { border-bottom: none; }
   .t-row:hover { background: #f9fafb; }
   .td { font-size: 14px; color: #374151; text-align: center; min-width: 0; }
-  .td:first-child { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .td:first-child { min-width: 0; white-space: normal; overflow: visible; word-break: break-word; line-height: 1.25; }
   .th { min-width: 0; }
   .td:first-child { text-align: left; font-weight: 500; color: #111827; }
   .td-ap { color: #1e40af; font-weight: 700; }
@@ -370,10 +370,10 @@
   .btn-ferias.on  { background: #d97706; color: white; }
   .btn-ferias.on:hover  { background: #b45309; }
   .badge-ferias  { background: #fef3c7; color: #d97706; }
-  .t-head-ferias  { grid-template-columns: 1fr 80px 80px 70px 55px !important; }
-  .t-row-ferias   { grid-template-columns: 1fr 80px 80px 70px 55px !important; }
-  .t-total-ferias { grid-template-columns: 1fr 80px 80px 70px 55px !important; }
-  .t-media-ferias { grid-template-columns: 1fr 80px 80px 70px 55px !important; }
+  .t-head-ferias  { grid-template-columns: 1fr 32px 32px 62px 40px !important; }
+  .t-row-ferias   { grid-template-columns: 1fr 32px 32px 62px 40px !important; align-items: center; }
+  .t-total-ferias { grid-template-columns: 1fr 32px 32px 62px 40px !important; }
+  .t-media-ferias { grid-template-columns: 1fr 32px 32px 62px 40px !important; }
   .btn-editar {
     width: 30px;
     height: 26px;
@@ -580,8 +580,8 @@
     <div class="table-card">
       <div class="t-head t-head-ferias">
         <div class="th">GCM</div>
-        <div class="th">Apr.</div>
-        <div class="th">Pagas</div>
+        <div class="th">Ap</div>
+        <div class="th">Pg</div>
         <div class="th">Férias</div>
         <div class="th"></div>
       </div>
